@@ -1,6 +1,5 @@
 
-
-function initPage() {
+function weather() {
     
     const cityEl = document.getElementById("city");
     const searchEl = document.getElementById("search");
@@ -25,7 +24,8 @@ function initPage() {
         
             
         let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
-          axios.get(queryURL)  
+        //fetch(queryURL)  
+        axios.get(queryURL)  
             .then(function (response) {
 
                 todayweatherEl.classList.remove("d-none");
@@ -105,12 +105,14 @@ function initPage() {
     }
 
     // Get history from local storage if any
+    
     searchEl.addEventListener("click", function () {
         const searchTerm = cityEl.value;
         getWeather(searchTerm);
         searchHistory.push(searchTerm);
         localStorage.setItem("search", JSON.stringify(searchHistory));
         renderSearchHistory();
+        
     })
 
     // Clear History button
@@ -146,4 +148,4 @@ function initPage() {
     
 }
 
-initPage();
+weather();
